@@ -10,6 +10,7 @@ import CoreData
 
 struct MainPage: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var recipesModel:RecipesModel
     let indigo = Color(red: 0.28627450980392155, green: 0.25882352941176473, blue: 0.8941176470588236)
     var body: some View {
         TabView{

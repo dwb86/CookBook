@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E214" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Recipes" representedClassName="Recipes" syncable="YES">
+    <entity name="Recipe" representedClassName="Recipe" syncable="YES">
         <attribute name="id_" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="ingredients_" optional="YES" attributeType="Transformable"/>
-        <attribute name="instructions_" optional="YES" attributeType="Transformable"/>
+        <attribute name="ingredients_" optional="YES" attributeType="Transformable" customClassName="Array&lt;String&gt;"/>
+        <attribute name="instructions_" optional="YES" attributeType="Transformable" customClassName="Array&lt;String&gt;"/>
         <attribute name="name_" optional="YES" attributeType="String"/>
     </entity>
 </model>

@@ -11,6 +11,7 @@ struct GetRecipeBarView: View {
     @Environment(\.managedObjectContext) var context
     @State private var siteUrl:String = ""
     @State private var ingredients = [String]()
+    @EnvironmentObject var recipesModel:RecipesModel
     var body: some View {
         HStack{
             Spacer()
@@ -21,7 +22,11 @@ struct GetRecipeBarView: View {
                 Image("GetRecipeButton")
                     .resizable()
                     .frame(width: 100,height: 40).onTapGesture {
-                        print("Add recipe logic")
+                        recipesModel.fetchRecipe(from: siteUrl){success,recipe in
+                            if success{
+                                let recipe = recipe
+                            }
+                        }
                     }
             }
             Spacer()
