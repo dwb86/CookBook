@@ -13,6 +13,6 @@ struct GetRecipeView: View {
     }
 }
 
-#Preview {
-    GetRecipeView()
-}
+//#Preview {
+//    GetRecipeView()
+//}

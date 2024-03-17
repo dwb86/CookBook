@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct CookBookApp: App {
     let persistenceController = PersistenceController.shared
-    var recipesModel = RecipesModel()
+    @ObservedObject var recipesModel = RecipesModel()
     var body: some Scene {
         WindowGroup {
             MainPage()

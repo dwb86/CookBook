@@ -59,6 +59,6 @@ extension View {
     }
 }
 
-#Preview {
-    ThemeView(ContentView: {GetRecipeBarView()})
-}
+//#Preview {
+//    ThemeView(ContentView: {GetRecipeBarView()})
+//}

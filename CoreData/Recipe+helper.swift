@@ -12,8 +12,8 @@ import CoreData
 
 extension Recipe{
     
-    var id: UUID {
-        get { id_!}
+    public var id: UUID {
+        get { id_ ?? UUID()  }
         set { id_ = newValue }
     }
     

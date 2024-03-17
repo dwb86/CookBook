@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct RecipePreviewView: View {
+    @Binding var idPassThrough:UUID
     var body: some View {
-        ThemeView(ContentView: {IngredientsView()})
+        @State var id = idPassThrough
+        ThemeView(ContentView: {IngredientsView(id: $id)})
     }
 }
 
-#Preview {
-    RecipePreviewView()
-}
+//#Preview {
+//    RecipePreviewView(recipe: Recipe())
+//}

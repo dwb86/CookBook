@@ -8,13 +8,13 @@
 import Foundation
 import SwiftSoup
 
-protocol FetchRecipeServiceProtocol {
-    func fetchRecipe(url:String, _ completion:@escaping(_ success:Bool, _ ingredients:[String],_ instructions:[String])->Void)
-}
+//protocol FetchRecipeServiceProtocol {
+//    func fetchRecipe(url:String, _ completion:@escaping(_ success:Bool, _ ingredients:[String],_ instructions:[String])->Void)
+//}
 
-final class FetchRecipeService:FetchRecipeServiceProtocol{
+final class FetchRecipeService{
     
-    func fetchRecipe(url:String, _ completion: @escaping (_ success:Bool,_ ingredients:[String],_ instructions:[String]) -> Void) {
+    func fetchRecipe(url:String, _ completion: @escaping (_ success:Bool,_ ingredients:[String],_ instructions:[String]) -> Void) async {
         
         let url = URL(string: url)
         guard let url = url else{
