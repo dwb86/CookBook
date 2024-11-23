@@ -11,10 +11,10 @@ import SwiftSoup
 //protocol FetchRecipeServiceProtocol {
 //    func fetchRecipe(url:String, _ completion:@escaping(_ success:Bool, _ ingredients:[String],_ instructions:[String])->Void)
 //}
-
+@MainActor
 final class FetchRecipeService{
     
-    func fetchRecipe(url:String, _ completion: @escaping (_ success:Bool,_ ingredients:[String],_ instructions:[String]) -> Void) async {
+    func fetchRecipe(url:String, _ completion: @escaping (_ success:Bool,_ ingredients:[String],_ instructions:[String],_ name:String) -> Void) async {
         
         let url = URL(string: url)
         guard let url = url else{
@@ -32,9 +32,9 @@ final class FetchRecipeService{
             
             do{
                 let webPageHtml:Document = try SwiftSoup.parse(html)
-                if html.contains("mntl-structured-ingredients__list"){
-                    self.parseFromAllRecipes(html: webPageHtml){success,ingredients,instructions in
-                        completion(success,ingredients,instructions)
+                if html.contains("mm-recipes-structured-ingredients__list"){
+                    self.parseFromAllRecipes(html: webPageHtml){success,ingredients,instructions,name in
+                        completion(success,ingredients,instructions,name)
                     }
                 }else{
                     //TODO: add an if statement and code for word press
@@ -47,20 +47,26 @@ final class FetchRecipeService{
         fetchRecipeTask.resume()
     }
     
-    private func parseFromAllRecipes(html:Document, _ completion: @escaping (_ success:Bool,_ ingredients:[String],_ instructions:[String]) -> Void) {
+    private func parseFromAllRecipes(html:Document, _ completion: @escaping (_ success:Bool,_ ingredients:[String],_ instructions:[String],_ name:String) -> Void) {
         var ingredients = [String]()
         var instructions = [String]()
+        var name = String()
         do{
-            let ingredientElements:Elements = try html.getElementsByClass("mntl-structured-ingredients__list").select("p")
+            let ingredientElements:Elements = try html.getElementsByClass("mm-recipes-structured-ingredients__list").select("p")
             for ingredient:Element in ingredientElements.array(){
                 try ingredients.append(ingredient.text())
             }
             
-            let instructionElements:Elements = try html.getElementsByClass("comp mntl-sc-block-group--LI mntl-sc-block mntl-sc-block-startgroup").select("p")
+            let instructionElements:Elements = try html.getElementsByClass("mm-recipes-structured-ingredients__list-item").select("p")
             for instruction:Element in instructionElements.array(){
                 try instructions.append(instruction.text())
             }
-            completion(true,ingredients,instructions)
+            
+            let titleElements:Elements = try html.getElementsByClass("article-heading")
+            try name.append(titleElements.text())
+            
+            
+            completion(true,ingredients,instructions,name)
         }catch{
             print("Error in Fetch Recipe Service 4")
         }

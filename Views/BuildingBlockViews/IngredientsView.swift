@@ -20,7 +20,7 @@ struct IngredientsView: View {
                     ForEach(recipes, id: \.self){recipe in
                         let ingredients = recipe.ingredients
                         ForEach(ingredients, id: \.self){ingredient in
-                            Text("\(ingredient)")
+                            Text("\(ingredient)").frame(alignment: .leading)
                         }
                     }.ignoresSafeArea()
                 }

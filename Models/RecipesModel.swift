@@ -11,7 +11,7 @@ import CoreData
 @MainActor
 class RecipesModel:ObservableObject{
     
-    @Published private var recipes:[Recipe]
+    @Published var recipes:[Recipe]
     private let fetchRecipeService = FetchRecipeService()
     
     init() {
@@ -28,10 +28,10 @@ class RecipesModel:ObservableObject{
     }
     
     func fetchRecipe(from url:String,context:NSManagedObjectContext,_ completion:@escaping(_ success:Bool, _ recipe:Recipe)->Void) async {
-        await fetchRecipeService.fetchRecipe(url: url){success,ingredients,instructions in
+        await fetchRecipeService.fetchRecipe(url: url){success,ingredients,instructions,name in
             if success {
                 let recipe = Recipe(context: context)
-                recipe.name = "Temp Title"
+                recipe.name = name
                 recipe.ingredients = ingredients
                 recipe.instructions = instructions
                 self.recipes.append(recipe)

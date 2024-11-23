@@ -34,7 +34,7 @@ struct ThemeView<TestView:View>: View {
                                 .cornerRadius(15)
                             Spacer().frame(width: 20)
                         }
-                        Text("Powered by\nDylan's Big Brain")
+                        //Text("Powered by\nDylan's Big Brain")
                             .frame(width: 150,height: 50)
                             .multilineTextAlignment(.center)
                             .colorScheme(.dark)

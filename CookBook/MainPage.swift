@@ -15,6 +15,10 @@ struct MainPage: View {
     var body: some View {
         TabView{
             Group{
+                RecipesView()
+                    .tabItem {
+                        Label("Recips", systemImage: "bag")
+                    }
                 GetRecipeView()
                     .tabItem {
                         Label("Add Recipe", systemImage: "plus.circle")
